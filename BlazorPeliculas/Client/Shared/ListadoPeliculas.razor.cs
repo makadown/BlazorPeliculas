@@ -35,16 +35,16 @@ namespace BlazorPeliculas.Client.Shared
             return true;
         }
 
-        bool MostrarBotones = false;
+        bool MostrarBotones = true;
 
         async Task EliminarPelicula(Pelicula pelicula)
         {
             var confirmado =
-                await js.Confirm( $"Desea borrar la pelicula {pelicula.Titulo}");
+                await js.Confirm( $"Desea borrar la pelicula {pelicula.Titulo}?");
             if (confirmado)
             {
                 Peliculas.Remove(pelicula);
-                Console.WriteLine($"Se ha eliminado una pelicula con callback { pelicula.Titulo } ");
+                await js.ExitoEliminado();
             }
         }
     }
