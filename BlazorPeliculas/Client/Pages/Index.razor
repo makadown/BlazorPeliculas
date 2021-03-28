@@ -1,0 +1,46 @@
+﻿@page "/"
+
+<div>
+    <h3>Películas</h3>
+    <ListadoPeliculas Peliculas="ListadoPelis">
+    </ListadoPeliculas>
+</div>
+
+<button @onclick="AgregarPelicula">Agregar Pelicula</button>
+
+@code {
+    private Dictionary<string, object> EjemploTextboxParametros = new Dictionary<string, object>() {
+                                       { "placeholder", "pleisjolder!" },
+                                       { "disabled", "true" }
+                                  };
+    private List<Pelicula> ListadoPelis;
+
+    protected override void OnInitialized()
+    {
+        ListadoPelis = ObtenerPeliculas();
+    }
+
+    void AgregarPelicula()
+    {
+        ListadoPelis.Add(new Pelicula() { Titulo="Nueva Pelicula papu!", Lanzamiento = DateTime.Today });
+    }
+
+    private List<Pelicula> ObtenerPeliculas()
+    {
+        return new List<Pelicula>()
+        {
+            new Pelicula() {
+                    Titulo ="Spiderman: Far from home",
+                    Lanzamiento = new DateTime(2017,01,01)
+            },
+            new Pelicula() {
+                    Titulo ="Moana",
+                    Lanzamiento = new DateTime(2020,05,05)
+            },
+            new Pelicula() {
+                    Titulo ="Inception",
+                    Lanzamiento = new DateTime(2014,12,12)
+            }
+        };
+    }
+} 
