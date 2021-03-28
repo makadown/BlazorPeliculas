@@ -10,35 +10,3 @@
     </HayRegistros>
 </ListadoGenerico>
 
-@code {
-    [Parameter] public List<Pelicula> Peliculas { get; set; }
-
-    protected override void OnInitialized()
-    {
-        Console.WriteLine("OnInitialized");
-    }
-
-    protected override void OnParametersSet()
-    {
-        Console.WriteLine("OnParametersSet");
-    }
-
-    protected override void OnAfterRender(bool firstRender)
-    {
-        Console.WriteLine($"OnAfterRender: {firstRender}");
-    }
-
-    protected override bool ShouldRender()
-    {
-        Console.WriteLine("ShouldRender");
-        return true;
-    }
-
-    bool MostrarBotones = false;
-
-    void EliminarPelicula(Pelicula pelicula)
-    {
-        Peliculas.Remove(pelicula);
-        Console.WriteLine($"Se ha eliminado una pelicula con callback { pelicula.Titulo } ");
-    }
-}

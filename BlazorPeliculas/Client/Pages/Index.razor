@@ -1,12 +1,12 @@
 ﻿@page "/"
-
+@inject IRepositorio repositorio; 
 <div>
     <h3>Películas</h3>
     <ListadoPeliculas Peliculas="ListadoPelis">
     </ListadoPeliculas>
 </div>
 
-<button @onclick="AgregarPelicula">Agregar Pelicula</button>
+<button class="btn btn-primary" @onclick="AgregarPelicula">Agregar Pelicula</button>
 
 @code {
     private Dictionary<string, object> EjemploTextboxParametros = new Dictionary<string, object>() {
@@ -17,30 +17,11 @@
 
     protected override void OnInitialized()
     {
-        ListadoPelis = ObtenerPeliculas();
+        ListadoPelis = repositorio.ObtenerPeliculas();
     }
 
     void AgregarPelicula()
     {
         ListadoPelis.Add(new Pelicula() { Titulo="Nueva Pelicula papu!", Lanzamiento = DateTime.Today });
-    }
-
-    private List<Pelicula> ObtenerPeliculas()
-    {
-        return new List<Pelicula>()
-        {
-            new Pelicula() {
-                    Titulo ="Spiderman: Far from home",
-                    Lanzamiento = new DateTime(2017,01,01)
-            },
-            new Pelicula() {
-                    Titulo ="Moana",
-                    Lanzamiento = new DateTime(2020,05,05)
-            },
-            new Pelicula() {
-                    Titulo ="Inception",
-                    Lanzamiento = new DateTime(2014,12,12)
-            }
-        };
     }
 } 

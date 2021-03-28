@@ -1,35 +1,36 @@
 ﻿@typeparam Titem
 
-@if (Listado == null)
-{
-    @if (Cargando == null)
+<div class="card-columns">
+    @if (Listado == null)
     {
-        <text>Cargando...</text>
+        @if (Cargando == null)
+        {
+            <text>Cargando...</text>
+        }
+        else
+        {
+            @Cargando
+        }
+    }
+    else if (Listado.Count == 0)
+    {
+        @if (NoHayRegistros == null)
+        {
+            <text> No hay registros para mostrar... </text>
+        }
+        else
+        {
+            @NoHayRegistros
+        }
     }
     else
     {
-        @Cargando
+        foreach (var elemento in Listado)
+        {
+            @HayRegistros(elemento)
+        }
     }
-}
-else if (Listado.Count == 0)
-{
-    @if (NoHayRegistros == null)
-    {
-        <text> No hay registros para mostrar... </text>
-    }
-    else
-    {
-        @NoHayRegistros
-    }
-}
-else
-{
-    foreach (var elemento in Listado)
-    {
-        @HayRegistros(elemento)
-    }
-}
-
+</div>
 @code {
 
     [Parameter] public RenderFragment Cargando { get; set; }

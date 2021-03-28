@@ -1,13 +1,21 @@
-﻿<div>
-    <p>Titulo: @((MarkupString)Pelicula.Titulo)</p>
-    <p>Fecha Lanzamiento: <b>@Pelicula.Lanzamiento.ToString("dd MMM yyyy")</b></p>
-    @if (MostrarBotones)
-    {
-        <div>
-            <button @onclick="@(()=> EliminarPelicula.InvokeAsync(Pelicula))"> BORRAR</button>
-        </div>
-    }
+﻿
+
+<div class="card" style="width: 18rem;">
+    <div class="card-body">
+        <h5 class="card-title"> @((MarkupString)Pelicula.Titulo) </h5>
+        <p class="card-text">
+
+            Lanzamiento: @Pelicula.Lanzamiento.ToString("dd MMM yyyy")
+
+        </p>
+        @if (MostrarBotones)
+        {
+            <button class="btn btn-danger" @onclick="@(() => EliminarPelicula.InvokeAsync(Pelicula))"> Borrar</button>
+        }
+    </div>
 </div>
+
+
 
 @code {
     [Parameter] public Pelicula Pelicula { get; set; }
