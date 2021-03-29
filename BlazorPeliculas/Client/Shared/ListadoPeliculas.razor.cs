@@ -39,18 +39,24 @@ namespace BlazorPeliculas.Client.Shared
         bool MostrarBotones = true;
         Pelicula peliculaABorrar;
 
-        void /*async Task*/ EliminarPelicula(Pelicula pelicula)
+        void EliminarPelicula(Pelicula pelicula)
         {
             peliculaABorrar = pelicula;
             confirmacion.Mostrar();
-            /*var confirmado =
+        }
+
+        /* Este metodo es el bueno, pero se comenta para permitir 
+         * ejemplificar hacer referencia a componente (un modal)
+        async Task  EliminarPelicula(Pelicula pelicula)
+        {
+           var confirmado =
                 await js.Confirm( $"Desea borrar la pelicula {pelicula.Titulo}?");
             if (confirmado)
             {
                 Peliculas.Remove(pelicula);
                 await js.ExitoEliminado();
-            }*/
-        }
+            }
+        }*/
 
         async Task EliminarPeliculaConfirmacion()
         {

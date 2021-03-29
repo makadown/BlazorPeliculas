@@ -1,5 +1,12 @@
 ﻿@page "/"
+@inject ServicioSingleton singleton
 @inject IRepositorio repositorio;
+@using static BlazorPeliculas.Client.Shared.MainLayout 
+
+<p style="color:@appState.ColorMayito; font-size: @appState.SizeMayito">
+    El valor de singleton es: @singleton.Valor
+</p>
+
 <div>
     <h3>Películas</h3>
     <ListadoPeliculas Peliculas="ListadoPelis">
@@ -9,6 +16,8 @@
 <button class="btn btn-primary" @onclick="AgregarPelicula">Agregar Pelicula</button>
 
 @code {
+    [CascadingParameter] private AppState appState { get; set; }
+
     private Dictionary<string, object> EjemploTextboxParametros
         = new Dictionary<string, object>() {
         { "placeholder", "pleisjolder!" },
