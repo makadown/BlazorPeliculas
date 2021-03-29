@@ -11,6 +11,7 @@ namespace BlazorPeliculas.Client.Shared
 {
     public partial class ListadoPeliculas
     {
+        Confirmacion confirmacion;
         [Inject] IJSRuntime js { get; set; }
         [Parameter] public List<Pelicula> Peliculas { get; set; }
 
@@ -36,16 +37,33 @@ namespace BlazorPeliculas.Client.Shared
         }
 
         bool MostrarBotones = true;
+        Pelicula peliculaABorrar;
 
-        async Task EliminarPelicula(Pelicula pelicula)
+        void /*async Task*/ EliminarPelicula(Pelicula pelicula)
         {
-            var confirmado =
+            peliculaABorrar = pelicula;
+            confirmacion.Mostrar();
+            /*var confirmado =
                 await js.Confirm( $"Desea borrar la pelicula {pelicula.Titulo}?");
             if (confirmado)
             {
                 Peliculas.Remove(pelicula);
                 await js.ExitoEliminado();
-            }
+            }*/
+        }
+
+        async Task EliminarPeliculaConfirmacion()
+        {
+            Peliculas.Remove(peliculaABorrar);
+            confirmacion.Ocultar();
+            peliculaABorrar = null;
+            await js.ExitoEliminado();
+        }
+
+        void onCancelConfirmacion()
+        {
+            confirmacion.Ocultar();
+            peliculaABorrar = null;
         }
     }
 }
