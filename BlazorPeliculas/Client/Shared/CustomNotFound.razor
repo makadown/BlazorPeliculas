@@ -1,0 +1,13 @@
+﻿<div class="container p-3 my-3 border">
+    <h1>Lo sentimos!</h1>
+    <p>No hay algo que mostrar en esta dirección.</p>
+</div>
+@code {
+    [Inject] IJSRuntime JS { get; set; }
+    IJSObjectReference modulo;
+
+    protected override async Task OnInitializedAsync()
+    {
+        Console.WriteLine("404: Ruta no encontrada");
+    }
+}
