@@ -11,42 +11,10 @@ namespace BlazorPeliculas.Client.Shared
 {
     public partial class ListadoPeliculas
     {
-        Confirmacion confirmacion;
         [Inject] IJSRuntime js { get; set; }
         [Parameter] public List<Pelicula> Peliculas { get; set; }
-
-        protected override void OnInitialized()
-        {
-            Console.WriteLine("OnInitialized");
-        }
-
-        protected override void OnParametersSet()
-        {
-            Console.WriteLine("OnParametersSet");
-        }
-
-        protected override void OnAfterRender(bool firstRender)
-        {
-            Console.WriteLine($"OnAfterRender: {firstRender}");
-        }
-
-        protected override bool ShouldRender()
-        {
-            Console.WriteLine("ShouldRender");
-            return true;
-        }
-
-        bool MostrarBotones = true;
+    
         Pelicula peliculaABorrar;
-
-        void EliminarPelicula(Pelicula pelicula)
-        {
-            peliculaABorrar = pelicula;
-            confirmacion.Mostrar();
-        }
-
-        /* Este metodo es el bueno, pero se comenta para permitir 
-         * ejemplificar hacer referencia a componente (un modal)
         async Task  EliminarPelicula(Pelicula pelicula)
         {
            var confirmado =
@@ -56,20 +24,6 @@ namespace BlazorPeliculas.Client.Shared
                 Peliculas.Remove(pelicula);
                 await js.ExitoEliminado();
             }
-        }*/
-
-        async Task EliminarPeliculaConfirmacion()
-        {
-            Peliculas.Remove(peliculaABorrar);
-            confirmacion.Ocultar();
-            peliculaABorrar = null;
-            await js.ExitoEliminado();
-        }
-
-        void onCancelConfirmacion()
-        {
-            confirmacion.Ocultar();
-            peliculaABorrar = null;
         }
     }
 }

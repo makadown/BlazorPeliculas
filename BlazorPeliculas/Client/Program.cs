@@ -1,5 +1,4 @@
 using BlazorPeliculas.Client.Repositorios;
-using BlazorPeliculas.Client.Servicios;
 using CurrieTechnologies.Razor.SweetAlert2;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -30,8 +29,6 @@ namespace BlazorPeliculas.Client
         private static void ConfigureServices(IServiceCollection services)
         {
             services.AddSweetAlert2();
-            services.AddSingleton<ServicioSingleton>();
-            services.AddTransient<ServicioTransient>();
             services.AddSingleton<IRepositorio, Repositorio>();
         }
     }

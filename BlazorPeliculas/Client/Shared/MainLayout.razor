@@ -11,20 +11,7 @@
         </div>
 
         <div class="content px-4">
-            <CascadingValue Value="@appState">
                 @Body
-            </CascadingValue>
-
         </div>
     </div>
 </div>
-@code {
-    AppState appState = new AppState();
-
-    public class AppState
-    {
-        public string ColorMayito { get; set; } = "red";
-        public string SizeMayito { get; set; } = "40px";
-    }
-
-} 

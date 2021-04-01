@@ -1,17 +1,9 @@
-﻿
-    <input type="checkbox" @bind="MostrarBotones" /> Mostrar botones
-<br />
-
-<ListadoGenerico Listado="Peliculas">
-    <HayRegistros Context="pelicula">
-        <PeliculaIndividual Pelicula="pelicula"
-                            EliminarPelicula="EliminarPelicula"
-                            MostrarBotones="MostrarBotones"></PeliculaIndividual>
-    </HayRegistros>
-</ListadoGenerico>
-
-<Confirmacion @ref="confirmacion" 
-              onConfirm="EliminarPeliculaConfirmacion" onCancel="onCancelConfirmacion">
-    <div>¿Desea borrar la película?</div>
-</Confirmacion>
+﻿<div style="display: flex; flex-wrap: wrap; align-items: center;">
+    <ListadoGenerico Listado="Peliculas">
+        <HayRegistros Context="pelicula">
+            <PeliculaIndividual Pelicula="pelicula"
+                                EliminarPelicula="EliminarPelicula"></PeliculaIndividual>
+        </HayRegistros>
+    </ListadoGenerico>
+</div>
 

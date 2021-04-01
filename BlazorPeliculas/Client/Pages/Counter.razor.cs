@@ -1,5 +1,4 @@
-﻿using BlazorPeliculas.Client.Servicios;
-using Microsoft.AspNetCore.Components;
+﻿using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using System;
 using System.Collections.Generic;
@@ -11,10 +10,7 @@ namespace BlazorPeliculas.Client.Pages
 {
     public partial class Counter
     {
-        [Inject] ServicioSingleton singleton { get; set; }
-        [Inject] ServicioTransient transient { get; set; }
         [Inject] IJSRuntime JS { get; set; }
-        [CascadingParameter] AppState appState { get; set; }
 
         IJSObjectReference modulo;
 
@@ -28,8 +24,6 @@ namespace BlazorPeliculas.Client.Pages
             await modulo.InvokeVoidAsync("mostrarAlerta", "Se ha incrementado");
             currentCount++;
             currentCountStatic++;
-            singleton.Valor++;
-            transient.Valor++;
             await JS.InvokeVoidAsync("pruebaPuntoNetStatic");
         }
 
