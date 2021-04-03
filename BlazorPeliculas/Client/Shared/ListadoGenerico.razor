@@ -1,6 +1,6 @@
 ﻿@typeparam Titem
 
-<div class="card-columns">
+
     @if (Listado == null)
     {
         @if (Cargando == null)
@@ -30,7 +30,7 @@
             @HayRegistros(elemento)
         }
     }
-</div>
+
 @code {
 
     [Parameter] public RenderFragment Cargando { get; set; }
